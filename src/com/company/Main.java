@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(scramble("rkqodlw", "world"));
-        System.out.println(scramble("cedewaraaossoqqyt", "codewars"));
+        System.out.println(scramble("cedewaraaosoqqyt", "codewars"));
         System.out.println(scramble("katas", "steak"));
     }
 
@@ -16,11 +16,15 @@ public class Main {
             return false;
         }
         HashMap<Character, Integer> hashMapS1 = new HashMap<>();
-        HashMap<Character, Integer> hashMapS2 = new HashMap<>();
         putInHashMap(s1, hashMapS1);
-        putInHashMap(s2, hashMapS2);
-        for (int i = 0; i < hashMapS2.size(); i++) {
-            if (hashMapS1.get(s2.charAt(i)) == null || (hashMapS2.get(s2.charAt(i)) > (hashMapS1.get(s2.charAt(i))))) {
+        for (int i = 0; i < s2.length(); i++) {
+            if (hashMapS1.get(s2.charAt(i)) != null) {
+                hashMapS1.put(s2.charAt(i), hashMapS1.get(s2.charAt(i)) - 1);
+            } else {
+                b = false;
+                break;
+            }
+            if (hashMapS1.get(s2.charAt(i)) == -1) {
                 b = false;
                 break;
             }
